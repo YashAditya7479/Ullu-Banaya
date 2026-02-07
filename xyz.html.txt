@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Rose Day Tanvi 🌹</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #7a0f2b;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 30px 25px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 320px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .tap {
+      font-size: 18px;
+      animation: pulse 1.5s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .rose {
+      font-size: 20px;
+      margin: 20px 0;
+      display: none;
+      animation: bloom 3s forwards;
+    }
+
+    @keyframes bloom {
+      from { transform: scale(0); }
+      to { transform: scale(5); }
+    }
+
+    h1 {
+      margin-top: 25px;
+      font-size: 22px;
+      display: none;
+    }
+
+    p, .from {
+      display: none;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .from {
+      margin-top: 15px;
+      font-style: italic;
+    }
+
+    .hearts span {
+      position: absolute;
+      bottom: -10px;
+      font-size: 18px;
+      animation: float 6s infinite;
+      opacity: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    button {
+      margin-top: 15px;
+      border: none;
+      background: #ff4d6d;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div class="tap" id="tap">🌹 Tap to open your rose 🌹</div>
+
+  <div class="rose" id="rose">🌹</div>
+
+  <h1 id="title"></h1>
+  <p id="msg"></p>
+  <div class="from" id="from"></div>
+
+  <button onclick="toggleMusic()">🎵 Music</button>
+</div>
+
+<div class="hearts">
+  <span style="left:10%">❤️</span>
+  <span style="left:30%; animation-delay:1s;">💖</span>
+  <span style="left:50%; animation-delay:2s;">💕</span>
+  <span style="left:70%; animation-delay:3s;">❤️</span>
+  <span style="left:90%; animation-delay:4s;">💖</span>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const tap = document.getElementById("tap");
+  const rose = document.getElementById("rose");
+  const title = document.getElementById("title");
+  const msg = document.getElementById("msg");
+  const from = document.getElementById("from");
+  const music = document.getElementById("music");
+
+  tap.onclick = () => {
+    tap.style.display = "none";
+    rose.style.display = "block";
+    music.play();
+
+    setTimeout(() => typeText(title, "Happy Rose Day, Tanvi 💖"), 2500);
+    setTimeout(() => typeText(msg, "This rose is just for you ❤️"), 4200);
+    setTimeout(() => from.innerText = "— From Yash 🌹", 6000);
+    setTimeout(() => from.style.display = "block", 6000);
+  };
+
+  function typeText(el, text) {
+    el.style.display = "block";
+    let i = 0;
+    const interval = setInterval(() => {
+      el.innerText += text[i++];
+      if (i === text.length) clearInterval(interval);
+    }, 80);
+  }
+
+  function toggleMusic() {
+    music.paused ? music.play() : music.pause();
+  }
+</script>
+
+</body>
+</html>
